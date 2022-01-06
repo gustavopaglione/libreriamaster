@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Modificar Libro</title>
+                    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+                          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+                        </head>
+
+                        <body>
+                            <div class="container m-5">
+
+                                <h3>Formulario para Modificar libros</h3>
+
+                                <imput hidden th:value="${id}" name="id">
+                                    <form th:action="@{/libro/modificar/__${libro.id}__" method="POST" class="row g-1">
+                                        <div class="form-floating mb-3">
+                                            <input th:value="${libro.isbn}" type="text" class="form-control" id="floatingInput" placeholder="isbn">
+                                                <label for="floatingInput">ISBN</label>
+                                        </div>
+                                        <div class="form-floating mb-3">
+                                            <input th:value="${libro.titulo}" type="text" class="form-control" id="floatingInput" placeholder="Titulo del libro">
+                                                <label for="floatingInput">Titulo</label>
+                                        </div>
+                                        <div class="form-floating mb-3">
+                                            <input th:value="${libro.anio}" type="text" class="form-control" id="floatingInput" placeholder="Año del libro">
+                                                <label for="floatingInput">Año</label>
+                                                <br>
+                                                    <select class="form-select" aria-label="Default select example">
+                                                        <option selected>Seleccionar Autor</option>
+                                                        <option value="1">One</option>
+                                                        <option value="2">Two</option>
+                                                        <option value="3">Three</option>
+                                                    </select>  
+                                                    <br>
+                                                        <select class="form-select" aria-label="Default select example">
+                                                            <option selected>Seleccionar Editorial</option>
+                                                            <option value="1">One</option>
+                                                            <option value="2">Two</option>
+                                                            <option value="3">Three</option>
+                                                        </select>
+                                                        <br>
+                                                            <div class="col-12">
+                                                                <button type="submit" class="btn btn-primary">Cargar nuevo Libro</button>
+                                                            </div>
+                                                           <br>
+                                                        <div class="col-12">
+                                                          <button type="submit" class="btn btn-secondary">Volver a inicio</button>
+                                                      </div>
+                                                            </form>
+
+                                                            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+                                                                    integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous">
+                                                            </script>
+                                                            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+                                                                    integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous">
+                                                            </script>
+                                                            </body>
+
+                                                            </html>
