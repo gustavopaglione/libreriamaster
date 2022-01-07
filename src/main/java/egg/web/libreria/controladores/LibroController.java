@@ -62,7 +62,7 @@ public class LibroController {
             modelo.put("ejemplaresPrestados", ejemplaresPrestados);
             modelo.put("nombreAutor", nombreAutor);
             modelo.put("nombreEditorial", nombreEditorial);
-            return "form-libro.html";
+            return "Cargar_libro.html";
         }
         modelo.put("titulo", "Libro agregado exitosamente!");
         return "exito.html";
