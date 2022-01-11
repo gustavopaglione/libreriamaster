@@ -1,5 +1,6 @@
 package egg.web.libreria.servicios;
 
+import egg.web.libreria.entidades.Foto;
 import egg.web.libreria.entidades.Usuario;
 import egg.web.libreria.exception.ExceptionServicio;
 import egg.web.libreria.repositorios.UsuarioRepositorio;
@@ -19,15 +20,19 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class UsuarioServicio {
 
     @Autowired
     private UsuarioRepositorio usuarioRepo;
+    
+    @Autowired
+    private FotoServicio fotoServicio;
 
     @Transactional
-    public void registrarUsuario(String email, String nombre, String apellido, String telefono, String password1, String password2) throws ExceptionServicio {
+    public void registrarUsuario(MultipartFile archivo, String email, String nombre, String apellido, String telefono, String password1, String password2) throws ExceptionServicio {
 
         validar(email, nombre, apellido, telefono, password1, password2);
 
@@ -38,6 +43,9 @@ public class UsuarioServicio {
         usuario.setTelefono(telefono);
         String encriptada = new BCryptPasswordEncoder().encode(password1);
         usuario.setPassword(encriptada);
+        
+        Foto foto = fotoServicio.guardar(archivo);
+        usuario.setFoto(foto);
 
         usuarioRepo.save(usuario);
     }

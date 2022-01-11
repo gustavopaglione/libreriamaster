@@ -23,11 +23,11 @@ public class AutorController {
      @Autowired
     AutorServicio autorServicio;
 
-    @GetMapping("")
+    @GetMapping("/lista_autor")
     public String autores(ModelMap modelo) {
         List<Autor> autores = autorServicio.listarAutores();
         modelo.put("autores", autores);
-        return "autores.html";
+        return "lista_autor.html";
     }
 
     @GetMapping("/autores-baja")
@@ -37,9 +37,9 @@ public class AutorController {
         return "autores-baja.html";
     }
 
-    @GetMapping("/form-autor")
+    @GetMapping("/agregar-autor")
     public String formAutor() {
-        return "form-autor.html";
+        return "agregar-autor.html";
     }
 
     @PostMapping("/agregar-autor")

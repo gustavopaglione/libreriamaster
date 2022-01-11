@@ -63,8 +63,8 @@
                                                                         <input type="number" class="form-control" name="anio" id="floatingInput" placeholder="Año del libro">
                                                                             <label for="floatingInput">Año</label>
                                                                             <br>
-                                                                                <select class="form-select" aria-label="Default select example">
-                                                                                    <option selected>Seleccionar Autor</option>
+                                                                                <select class="form-select" name="idAutor">
+                                                                                    <option th:each="autor:${autores}" th:value="${autor.id}" th:text="${autor.nombre}">Seleccionar Autor</option>
                                                                                     <option ></option>
                                                                                 </select>  
                                                                                 <br>

@@ -6,6 +6,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -23,6 +24,9 @@ public class Usuario {
 	private String telefono;
 	private boolean alta;
 	private String password;
+        
+        @OneToOne
+        private Foto foto;
         
 
     /**
@@ -122,6 +126,14 @@ public class Usuario {
      */
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Foto getFoto() {
+        return foto;
+    }
+
+    public void setFoto(Foto foto) {
+        this.foto = foto;
     }
         
         

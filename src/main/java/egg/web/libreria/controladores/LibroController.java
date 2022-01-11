@@ -1,7 +1,9 @@
 package egg.web.libreria.controladores;
 
+import egg.web.libreria.entidades.Autor;
 import egg.web.libreria.entidades.Libro;
 import egg.web.libreria.exception.ExceptionServicio;
+import egg.web.libreria.repositorios.AutorRepositorio;
 import egg.web.libreria.servicios.LibroServicio;
 import java.util.List;
 import java.util.logging.Level;
@@ -24,6 +26,9 @@ public class LibroController {
 
     @Autowired
     LibroServicio libroServicio;
+    
+     @Autowired
+    AutorRepositorio autorRepositorio;
 
     @GetMapping("/libro")
     public String libros(ModelMap modelo) {
@@ -40,7 +45,10 @@ public class LibroController {
     }
 
     @GetMapping("/Cargar_libro")
-    public String formLibro() {
+    public String formLibro(ModelMap modelo) {
+        List<Autor> autores = autorRepositorio.findAll();
+        modelo.put("autores", autores);
+        
         return "Cargar_libro.html";
     }
 

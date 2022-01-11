@@ -100,6 +100,14 @@ header .textos-header {
     margin-bottom: 15px;
 }
 
+.contenidos-textos-exito h3{
+     font-weight: 100;
+    text-align: center;
+}
+.contenidos-textos-exito p{
+     font-weight: 50;
+    text-align: center;
+}
 .contenidos-textos h3 span{
 background: #4d0684;
 color: #fff;
