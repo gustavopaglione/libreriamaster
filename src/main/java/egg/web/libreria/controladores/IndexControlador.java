@@ -50,10 +50,7 @@ public class IndexControlador {
         return "lista-libro.html";
     }
    
-    @GetMapping("/lista_editorial")
-    public String listaEditor() {
-        return "lista_editorial.html";
-    }
+   
     
       @PostMapping("/registrar")
     public String registrar(ModelMap modelo, MultipartFile archivo, @RequestParam String mail, @RequestParam String nombre,@RequestParam String apellido,@RequestParam String telefono,@RequestParam String clave1,@RequestParam String clave2){

@@ -30,7 +30,7 @@ public class LibroController {
      @Autowired
     AutorRepositorio autorRepositorio;
 
-    @GetMapping("/libro")
+    @GetMapping("/lista-libro")
     public String libros(ModelMap modelo) {
         List<Libro> libros = libroServicio.listarLibros();
         modelo.put("libros", libros);
@@ -44,15 +44,12 @@ public class LibroController {
         return "libros-baja.html";
     }
 
-    @GetMapping("/Cargar_libro")
-    public String formLibro(ModelMap modelo) {
-        List<Autor> autores = autorRepositorio.findAll();
-        modelo.put("autores", autores);
-        
-        return "Cargar_libro.html";
+   @GetMapping("/cargar_libro")
+    public String formAutor() {
+        return "cargar_libro.html";
     }
 
-    @PostMapping("/Cargar_libro")
+    @PostMapping("/cargar_libro")
     public String agregarLibro(@RequestParam @Nullable MultipartFile archivo, ModelMap modelo, @RequestParam @Nullable Long isbn, @RequestParam @Nullable String titulo, @RequestParam @Nullable Integer anio, @RequestParam @Nullable Integer ejemplares, @RequestParam @Nullable Integer ejemplaresPrestados, @RequestParam @Nullable Boolean alta, @RequestParam @Nullable String nombreAutor, @RequestParam @Nullable String nombreEditorial) {
 
         Integer ejemplaresRestantes = ejemplares - ejemplaresPrestados;
@@ -70,7 +67,7 @@ public class LibroController {
             modelo.put("ejemplaresPrestados", ejemplaresPrestados);
             modelo.put("nombreAutor", nombreAutor);
             modelo.put("nombreEditorial", nombreEditorial);
-            return "Cargar_libro.html";
+            return "cargar_libro.html";
         }
         modelo.put("titulo", "Libro agregado exitosamente!");
         return "exito.html";

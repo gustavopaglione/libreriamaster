@@ -53,30 +53,30 @@
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody th:each="libro: ${libros}">
-                                                                    <tr>
-                                                                        <th scope="row" th:text="${libro.id}"></th>
-                                                                        <td th:text="${libro.isbn}"></td>
-                                                                        <td th:text="${libro.titulo}"></td>
-                                                                        <td th:text="${libro.autor}"></td>
-                                                                        <td th:text="${libro.editor}"></td>
-                                                                        <td th:text="${libro.anio}"></td>
-                                                                        <td>
-                                                                            <!--     <i th:if= "${libro.activo}" class="fa fa-circle text-succes"></i>
-                                                                                  <i th:unless= "${libro.activo}" class="fa fa-circle" style="color: red;"></i> 
-                                                                              </td>
-                                                                              <td>
-                                                                                  <a th:href= "@{/libro/alta/__${libro.id}__}"><i class="fa fa-arrow-up"></i></a> <!--FLECHITA-->
-                                                                            <!--    <a th:href= "@{/libro/baja/__${libro.id}__}"><i class="fa fa-ban"></i></a> 
-                                                                                <a th:href= "@{/libro/modificar/__${libro.id}__}"><i class="fas fa-feather-alt"></i></a> -->
-                                                                        </td>
-                                                                    </tr>
+                                                                 <tr>
+                                                                            <th scope="row" th:text="${libro.id}"></th>
+                                                                            <td th:text="${libro.isbn}"></td>
+                                                                            <td th:text="${libro.titulo}"></td>
+                                                                            <td th:text="${libro.autor}"></td>
+                                                                            <td th:text="${libro.editorial}"></td>
+                                                                            <td th:text="${libro.anio}"></td>
+                                                                            <td>
+                                                                                <i th:if= "${libro.alta}" class="fa fa-circle text-succes"></i>
+                                                                                <i th:unless= "${libro.alta}" class="fa fa-circle" style="color: red;"></i>
+                                                                            </td>
+                                                                            <td>
+                                                                                <a th:href= "@{/libro/alta/__${libro.id}__}"><i class="fa fa-arrow-up"></i></a> 
+                                                                                <a th:href= "@{/libro/baja/__${libro.id}__}"><i class="fa fa-ban"></i></a> 
+                                                                                <a th:href= "@{/libro/modificar/__${libro.id}__}"><i class="fas fa-feather-alt"></i></a>
+                                                                            </td>
+                                                                        </tr>
 
                                                                 </tbody>
 
                                                             </table>
                                                             <br>
                                                                 <div class="col-12">
-                                                                    <a th:href="@{/libro/Cargar_libro}" class="btn btn-secondary" role="button"
+                                                                    <a th:href="@{/libro/cargar_libro}" class="btn btn-secondary" role="button"
                                                                        aria-pressed="true">Cargar nuevo libros</a>
 
 

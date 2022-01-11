@@ -1,4 +1,3 @@
-
 package egg.web.libreria.controladores;
 
 import egg.web.libreria.entidades.Editorial;
@@ -17,18 +16,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-    @Controller
+@Controller
 @RequestMapping("/editorial")
 public class EditorialController {
-        
- @Autowired
+
+    @Autowired
     EditorialServicio editorialServicio;
 
-    @GetMapping("")
+    @GetMapping("/lista_editorial")
     public String editoriales(ModelMap modelo) {
         List<Editorial> editoriales = editorialServicio.listarEditoriales();
         modelo.put("editoriales", editoriales);
-        return "editoriales.html";
+        return "lista_editorial.html";
     }
 
     @GetMapping("/editoriales-baja")
@@ -43,10 +42,14 @@ public class EditorialController {
         return "form-editorial.html";
     }
 
-    @PostMapping("/agregar-editorial")
+    @GetMapping("/cargar_editor")
+    public String formAutor() {
+        return "cargar_editor.html";
+    }
+
+    @PostMapping("/cargar_editor")
     public String agregarEditorial(ModelMap modelo, @RequestParam @Nullable String nombre, @RequestParam @Nullable Boolean alta) {
 
-        
         try {
             if (alta == null) {
                 alta = false;
@@ -58,7 +61,7 @@ public class EditorialController {
             return "exito.html";
         } catch (ExceptionServicio ex) {
             Logger.getLogger(IndexControlador.class.getName()).log(Level.SEVERE, null, ex);
-            
+
             modelo.put("titulo", "Error");
             modelo.put("error", ex.getMessage());
             return "fracaso";
@@ -98,7 +101,7 @@ public class EditorialController {
             return "editoriales.html";
         } catch (Exception ex) {
             Logger.getLogger(IndexControlador.class.getName()).log(Level.SEVERE, null, ex);
-            
+
             modelo.put("titulo", "Error");
             modelo.put("error", ex.getMessage());
             return "fracaso";
@@ -112,7 +115,7 @@ public class EditorialController {
             return "editoriales.html";
         } catch (Exception ex) {
             Logger.getLogger(IndexControlador.class.getName()).log(Level.SEVERE, null, ex);
-            
+
             modelo.put("titulo", "Error");
             modelo.put("error", ex.getMessage());
             return "fracaso";
@@ -120,4 +123,3 @@ public class EditorialController {
     }
 
 }
-

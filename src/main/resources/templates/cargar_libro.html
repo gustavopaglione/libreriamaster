@@ -50,7 +50,7 @@
                                                                         <p class="card-text" th:text="${error}"></p>
                                                                     </div>
                                                                 </div>
-                                                                <form th:action="@{/libro/Cargar_libro}" method="POST">
+                                                                <form th:action="@{/libro/cargar_libro}" method="POST">
                                                                     <div class="form-floating mb-3">
                                                                         <input type="number" class="form-control" name="isbn" id="floatingInput" placeholder="isbn">
                                                                             <label for="floatingInput">ISBN</label>
@@ -68,10 +68,10 @@
                                                                                     <option ></option>
                                                                                 </select>  
                                                                                 <br>
-                                                                                    <select class="form-select" aria-label="Default select example">
-                                                                                        <option selected>Seleccionar Editorial</option>
+                                                                                    <select class="form-select" name="idEditorial">
+                                                                                        <option th:each="editorial:${editoriales}" th:value="${editorial.id}" th:text="${editorial.nombre}">Seleccionar Autor</option>
                                                                                         <option ></option>
-
+                                                                                    </select> 
                                                                                     </select>
                                                                                     <br>
                                                                                         <div class="col-12">
@@ -93,7 +93,7 @@
                                                                                                 </div>
 
                                                                                                 </form>
-                                                                                            
+
 
 
                                                                                                 </main>
