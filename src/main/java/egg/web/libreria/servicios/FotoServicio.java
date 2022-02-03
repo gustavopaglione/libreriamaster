@@ -60,5 +60,28 @@ public class FotoServicio {
         return null;
     }
     
+@Transactional
+    public Foto mostrar(String idFoto, MultipartFile archivo) throws ExceptionServicio{
+        if (archivo != null) {
+            try {
+                Foto foto = new Foto();
+                
+                if (idFoto!=null) {
+                    Optional<Foto> respuesta = fotoRepositorio.findById(idFoto);
+                    if (respuesta.isPresent()) {
+                        foto = respuesta.get();
+                    }
+                }
+                foto.setMime(archivo.getContentType());
+                foto.setNombre(archivo.getName());
+                foto.setContenido(archivo.getBytes());
 
+               
+
+            } catch (Exception e) {
+                throw new ExceptionServicio("Error no se encontro ningun archivo");
+            }
+        }
+        return null;
+    }
 }

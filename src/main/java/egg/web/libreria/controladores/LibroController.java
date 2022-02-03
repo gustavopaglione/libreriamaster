@@ -4,6 +4,8 @@ import egg.web.libreria.entidades.Autor;
 import egg.web.libreria.entidades.Libro;
 import egg.web.libreria.exception.ExceptionServicio;
 import egg.web.libreria.repositorios.AutorRepositorio;
+import egg.web.libreria.servicios.AutorServicio;
+import egg.web.libreria.servicios.EditorialServicio;
 import egg.web.libreria.servicios.LibroServicio;
 import java.util.List;
 import java.util.logging.Level;
@@ -26,6 +28,10 @@ public class LibroController {
 
     @Autowired
     LibroServicio libroServicio;
+     @Autowired
+    AutorServicio autorServicio;
+      @Autowired
+    EditorialServicio editorialServicio;
     
      @Autowired
     AutorRepositorio autorRepositorio;
@@ -43,14 +49,21 @@ public class LibroController {
         modelo.put("libros", libros);
         return "libros-baja.html";
     }
-
+ 
+        
    @GetMapping("/cargar_libro")
-    public String formAutor() {
+    public String formAutor(ModelMap modelo, ModelMap modelo2) throws ExceptionServicio {
+        
+        modelo.put("autores", autorServicio.listarAutores());
+        
+        modelo2.put("editoriales", editorialServicio.listarEditoriales());
+        
+    
         return "cargar_libro.html";
     }
 
     @PostMapping("/cargar_libro")
-    public String agregarLibro(@RequestParam @Nullable MultipartFile archivo, ModelMap modelo, @RequestParam @Nullable Long isbn, @RequestParam @Nullable String titulo, @RequestParam @Nullable Integer anio, @RequestParam @Nullable Integer ejemplares, @RequestParam @Nullable Integer ejemplaresPrestados, @RequestParam @Nullable Boolean alta, @RequestParam @Nullable String nombreAutor, @RequestParam @Nullable String nombreEditorial) {
+    public String agregarLibro(@RequestParam @Nullable MultipartFile archivo, ModelMap modelo, @RequestParam @Nullable Long isbn, @RequestParam @Nullable String titulo, @RequestParam @Nullable Integer anio, @RequestParam @Nullable Integer ejemplares, @RequestParam @Nullable Integer ejemplaresPrestados, @RequestParam @Nullable Boolean alta, @RequestParam @Nullable String nombreAutor, @RequestParam @Nullable String nombreEditorial) throws ExceptionServicio {
 
         Integer ejemplaresRestantes = ejemplares - ejemplaresPrestados;
         if (alta == null) {
@@ -63,10 +76,11 @@ public class LibroController {
             modelo.put("error", ex.getMessage());
             modelo.put("isbn", isbn);
             modelo.put("titulo", titulo);
+            modelo.put("anio", anio);
             modelo.put("ejemplares", ejemplares);
             modelo.put("ejemplaresPrestados", ejemplaresPrestados);
-            modelo.put("nombreAutor", nombreAutor);
-            modelo.put("nombreEditorial", nombreEditorial);
+            modelo.put("autores", nombreAutor);
+            modelo.put("editoriales",nombreEditorial);
             return "cargar_libro.html";
         }
         modelo.put("titulo", "Libro agregado exitosamente!");

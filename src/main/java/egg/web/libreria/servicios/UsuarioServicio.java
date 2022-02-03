@@ -1,5 +1,6 @@
 package egg.web.libreria.servicios;
 
+import egg.web.libreria.entidades.Editorial;
 import egg.web.libreria.entidades.Foto;
 import egg.web.libreria.entidades.Usuario;
 import egg.web.libreria.exception.ExceptionServicio;
@@ -51,7 +52,7 @@ public class UsuarioServicio {
     }
 
     @Transactional
-    public void modificarUsuario(String id, String email, String nombre, String apellido, String telefono, String password1, String password2) throws ExceptionServicio {
+    public void modificarUsuario(String id, MultipartFile archivo, String email, String nombre, String apellido, String telefono, String password1, String password2) throws ExceptionServicio {
 
         validar(email, nombre, apellido, telefono, password1, password2);
 
@@ -66,8 +67,37 @@ public class UsuarioServicio {
             usuario.setTelefono(telefono);
             String encriptada = new BCryptPasswordEncoder().encode(password1);
             usuario.setPassword(encriptada);
+            
+            Foto foto = fotoServicio.guardar(archivo);
+        usuario.setFoto(foto);
 
             usuarioRepo.save(usuario);
+        } else {
+            throw new ExceptionServicio("No se encontró el usuario con id= " + id);
+        }
+    }
+        @Transactional
+    
+        public void mostrarUsuario(String id, MultipartFile archivo, String email, String nombre, String apellido, String telefono, String password1, String password2) throws ExceptionServicio {
+
+        validar(email, nombre, apellido, telefono, password1, password2);
+
+        Optional<Usuario> respuesta = usuarioRepo.findById(id);
+        if (respuesta.isPresent()) {
+
+            Usuario usuario = respuesta.get();
+
+            usuario.setEmail(email);
+            usuario.setNombre(nombre);
+            usuario.setApellido(apellido);
+            usuario.setTelefono(telefono);
+            String encriptada = new BCryptPasswordEncoder().encode(password1);
+            usuario.setPassword(encriptada);
+            
+            Foto foto = fotoServicio.mostrar(id, archivo);
+        usuario.setFoto(foto);
+
+            
         } else {
             throw new ExceptionServicio("No se encontró el usuario con id= " + id);
         }
@@ -103,6 +133,9 @@ public class UsuarioServicio {
             throw new ExceptionServicio("No coinciden las contraseñas");
         }
 
+    }
+    public List<Usuario> listarUsuario() {
+        return usuarioRepo.findAll();
     }
     //SEGURIDAD----------------------------------------
 

@@ -37,16 +37,49 @@
                                                         </header>
                                                         <main>
                                                             <section class="contenedor Registro">
-                                                                <h2 class="titulo">Ingresa a la Biblioteca Virtual</h2>
+                                                                <h2 class="titulo">Modificar los Datos de su usuario</h2>
                                                                 <div class="contenedor-sobre-nosotros">
                                                                     <img src="Imagenes/depositphotos_32350981-stock-photo-teens-reading-books.png" alt=""
                                                                          class="imagen-about-us">
+                                                                        <form class="row g-3" th:action="@{/modificar_usuario}"  method="POST" enctype="multipart/form-data">
+                                                                            
+                                                                            <p th:if="${error != null}" th:text="${error}" style="color:red" ></p>
+                                                                            <div class="col-12">
+                                                                                <label>Nombre</label>
+                                                                                <input type="text" class="form-control" name="nombre" th:value="${nombre}">
+                                                                            </div>
+                                                                            <div class="col-12">
+                                                                                <label>Apellido</label>
+                                                                                <input type="text" class="form-control" name="apellido" th:value="${apellido}">
+                                                                            </div>
+                                                                            <div class="col-12">
+                                                                                <label>Email</label>
+                                                                                <input type="email" class="form-control" name="mail" th:value="${mail}">
+                                                                            </div>
+                                                                             <div class="col-12">
+                                                                                <label>Telefono</label>
+                                                                                <input type="telefono" class="form-control" name="telefono" th:value="${telefono}">
+                                                                            </div>
+                                                                             <div class="col-12">
+                                                                                <label>Foto</label>
+                                                                                <input type="file" class="form-control" name="archivo" >
+                                                                            </div>
+
+                                                                            <div class="col-12">
+                                                                                <label>Contraseña</label>
+                                                                                <input type="password" class="form-control" name="clave1" th:value="${clave1}">
+                                                                            </div>
+                                                                            <div class="col-12">
+                                                                                <label>Repetir Contraseña</label>
+                                                                                <input type="password" class="form-control" name="clave2" th:value="${clave2}">
+                                                                            </div>
+                                                                            <div class="col-12">
+                                                                                <button type="submit" class="btn btn-secondary btn-lg" Value="modificar_usuario">Guardar</button>
+                                                                            </div>
+                                                                        </form>
 
                                                                 </div>
-                                                                <div class="contenidos-textos-exito">
-                                                                    <h3 class="display-4" th:text="${titulo}" ></h3>
-                                                                    <p th:text="${descripcion}"></p>
-                                                                </div>
+
 
                                                         </main>
                                                         <footer>

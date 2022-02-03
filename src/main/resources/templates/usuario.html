@@ -37,16 +37,49 @@
                                                         </header>
                                                         <main>
                                                             <section class="contenedor Registro">
-                                                                <h2 class="titulo">Ingresa a la Biblioteca Virtual</h2>
+                                                                <h2 class="titulo">Panel de Usuario</h2>
                                                                 <div class="contenedor-sobre-nosotros">
                                                                     <img src="Imagenes/depositphotos_32350981-stock-photo-teens-reading-books.png" alt=""
                                                                          class="imagen-about-us">
+                                                                        <form class="row g-3" th:action="@{/modificar_usuario}"  method="POST" enctype="multipart/form-data">
+                                                                            
+                                                                            <p th:if="${error != null}" th:text="${error}" style="color:red" ></p>
+                                                                            <div class="col-12">
+                                                                                <label>Nombre</label>
+                                                                                <p th:each="usuario : ${usuarios}" th:text="${usuario.nombre}" th:value="${usuario.id}"></p>
+                                                                            </div>
+                                                                            <div class="col-12">
+                                                                                <label>Apellido</label>
+                                                                                <p th:each="usuario : ${usuarios}" th:text="${usuario.apellido}" th:value="${usuario.id}"></p>
+                                                                            </div>
+                                                                            <div class="col-12">
+                                                                                <label>Email</label>
+                                                                                <p th:each="usuario : ${usuarios}" th:text="${usuario.mail}" th:value="${usuario.id}"></p>
+                                                                            </div>
+                                                                             <div class="col-12">
+                                                                                <label>Telefono</label>
+                                                                                <p th:each="usuario : ${usuarios}" th:text="${usuario.telefono}" th:value="${usuario.id}"></p>
+                                                                            </div>
+                                                                             <div class="col-12">
+                                                                                <label>Foto</label>
+                                                                               <p th:each="usuario : ${usuarios}" th:text="${usuario.foto}" th:value="${usuario.id}"></p>
+                                                                            </div>
+
+                                                                            
+                                                                            <div class="col-12">
+                                                                                <a th:href="@{/modificar_usuario}" class="btn btn-success btn-lg btn-block active" role="button"
+                                                                                       aria-pressed="true">Modificar datos</a>
+                                                                            </div>
+                                                                                                                                                  <div class="col-12">
+                                                                                    <a th:href="@{/index}" class="btn btn-success btn-lg btn-block active" role="button"
+                                                                                       aria-pressed="true">Volver a inicio</a>
+
+
+                                                                                </div>
+                                                                        </form>
 
                                                                 </div>
-                                                                <div class="contenidos-textos-exito">
-                                                                    <h3 class="display-4" th:text="${titulo}" ></h3>
-                                                                    <p th:text="${descripcion}"></p>
-                                                                </div>
+
 
                                                         </main>
                                                         <footer>
