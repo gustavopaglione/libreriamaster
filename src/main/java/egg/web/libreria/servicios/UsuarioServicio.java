@@ -24,7 +24,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 @Service
-public class UsuarioServicio {
+public class UsuarioServicio implements UserDetailsService {
 
     @Autowired
     private UsuarioRepositorio usuarioRepo;
@@ -139,29 +139,18 @@ public class UsuarioServicio {
     }
     //SEGURIDAD----------------------------------------
 
-//    @Override
-//    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-//        Usuario usuario = usuarioRepo.findByEmail(email);
-//        if (usuario != null) {
-//            List<GrantedAuthority> permisos = new ArrayList<GrantedAuthority>();
-//            GrantedAuthority p1 = new SimpleGrantedAuthority("ROLE_" + Rol.USER.name());
-//            GrantedAuthority p2 = new SimpleGrantedAuthority("ROLE_" + Rol.ADMIN.name());
-//            if (usuario.getRol() == null || usuario.getRol().equals(Rol.USER)) {
-//                permisos.add(p1);
-//            } else if (usuario.getRol().equals(Rol.ADMIN)) {
-//                permisos.add(p2);
-//            }
-//            //Aca voy a guardar los datos de la sesión para que puedan ser utilizados:
-//            ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-//            HttpSession session = attr.getRequest().getSession(true);
-//            session.setAttribute("usersession", usuario);
-//
-//            User user = new User(usuario.getEmail(), usuario.getPassword(), permisos);
-//            return user;
-//        } else {
-//            return null;
-//        }
-//    }
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        Usuario usuario = usuarioRepo.findByEmail(email);
+        if (usuario != null) {
+            List<GrantedAuthority> roles = new ArrayList<>();
+            roles.add(new SimpleGrantedAuthority("ADMIN"));
+       
+            UserDetails userDet = new User(usuario.getEmail(),usuario.getPassword(),usuario.getPassword(), roles);
+            
+            return userDet;
+        
+    }
 
    
 }
