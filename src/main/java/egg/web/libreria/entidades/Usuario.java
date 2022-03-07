@@ -24,6 +24,7 @@ public class Usuario {
 	private String telefono;
 	private boolean alta;
 	private String password;
+        private String rol;
         
         @OneToOne
         private Foto foto;
@@ -102,7 +103,7 @@ public class Usuario {
     /**
      * @return the alta
      */
-    public boolean isAlta() {
+    public boolean getAlta() {
         return alta;
     }
 
@@ -134,6 +135,14 @@ public class Usuario {
 
     public void setFoto(Foto foto) {
         this.foto = foto;
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
     }
         
         

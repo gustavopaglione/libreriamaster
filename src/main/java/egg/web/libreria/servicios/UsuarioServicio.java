@@ -134,22 +134,51 @@ public class UsuarioServicio implements UserDetailsService {
         }
 
     }
-    public List<Usuario> listarUsuario() {
+      
+        @Transactional(readOnly = true)
+    public Usuario buscarPorId(String id) {
+
+        return usuarioRepo.getById(id);
+    }
+
+    @Transactional(readOnly = true)
+    public Usuario buscarPormail(String mail) {
+
+        return usuarioRepo.findByEmail(mail);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Usuario> listaUsuarios() {
+
         return usuarioRepo.findAll();
     }
     //SEGURIDAD----------------------------------------
 
-    @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Usuario usuario = usuarioRepo.findByEmail(email);
+       @Override
+    public UserDetails loadUserByUsername(String mail) throws UsernameNotFoundException {
+        Usuario usuario = usuarioRepo.findByEmail(mail);
+
         if (usuario != null) {
-            List<GrantedAuthority> roles = new ArrayList<>();
-            roles.add(new SimpleGrantedAuthority("ADMIN"));
-       
-            UserDetails userDet = new User(usuario.getEmail(),usuario.getPassword(),usuario.getPassword(), roles);
-            
-            return userDet;
-        
+            List<GrantedAuthority> permisos = new ArrayList<>();
+
+            GrantedAuthority p1 = new SimpleGrantedAuthority("ROLE_" + usuario.getRol());
+            GrantedAuthority p2 = new SimpleGrantedAuthority("ALTA_" + usuario.getAlta());
+            permisos.add(p1);
+            permisos.add(p2);
+
+            //Esto me permite guardar el OBJETO USUARIO LOG, para luego ser utilizado
+            ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+            HttpSession session = attr.getRequest().getSession(true);
+            session.setAttribute("usuariosession", usuario);
+
+            User user = new User(usuario.getEmail(), usuario.getPassword(), permisos);
+
+            return user;
+
+        } else {
+            return null;
+        }
+
     }
 
    
