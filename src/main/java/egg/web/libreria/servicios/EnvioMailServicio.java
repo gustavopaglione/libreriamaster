@@ -1,8 +1,13 @@
 
 package egg.web.libreria.servicios;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+
+
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 
@@ -10,17 +15,17 @@ import org.thymeleaf.TemplateEngine;
 @Service
 public class EnvioMailServicio {
     
-    @Autowired
-    private JavaMailSender mailSender;
-    @Autowired
-    private TemplateEngine templateEngine;
-    
+//    @Autowired
+//    private JavaMailSender mailSender;
+////    @Autowired
+////    private TemplateEngine templateEngine;
+//    
 //   @Async
 //    public void enviar(String cuerpo, String titulo, String mail){
 //        
 //        SimpleMailMessage mensaje=new SimpleMailMessage();
 //        mensaje.setTo(mail);
-//        mensaje.setFrom("LibreriaMartin.web@gmail.com");
+//        mensaje.setFrom("licgustavopaglione@gmail.com");
 //        mensaje.setSubject(titulo);
 //        mensaje.setText(cuerpo);
 //      

@@ -50,7 +50,7 @@ public class IndexControlador {
     }
      @GetMapping("/modificar_usuario")
     public String modificarUsuario(ModelMap modelo) {
-        modelo.put("usuario", usuarioServicio.listarUsuario());
+        modelo.put("usuario", usuarioServicio.listaUsuarios());
         
         return "modificar_usuario.html";
     }
@@ -60,7 +60,7 @@ public class IndexControlador {
     }
    @GetMapping("/usuario")
     public String usuario(ModelMap modelo) {
-        List<Usuario> usuarios = usuarioServicio.listarUsuario();
+        List<Usuario> usuarios = usuarioServicio.listaUsuarios();
         modelo.put("usuario", usuarios);
         return "usuario.html";
     }

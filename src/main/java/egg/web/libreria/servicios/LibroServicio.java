@@ -163,21 +163,21 @@ public class LibroServicio {
         }
     }
 
-    public Libro buscarLibroPorTitulo(String titulo) throws ExceptionServicio {
-        if (titulo != null || !titulo.isEmpty()) {
-            return libroRepositorio.buscarLibroPorTitulo(titulo);
-        } else {
-            throw new ExceptionServicio("El titulo a buscar es nulo o vacio");
-        }
-    }
-
-    public Libro buscarLibroPorISBN(Long isbn) throws ExceptionServicio {
-        if (isbn != null || isbn > 0) {
-            return libroRepositorio.buscarLibroPorISBN(isbn);
-        } else {
-            throw new ExceptionServicio("El isbn a buscar es nulo o vacio");
-        }
-    }
+//    public Libro buscarLibroPorTitulo(String titulo) throws ExceptionServicio {
+//        if (titulo != null || !titulo.isEmpty()) {
+//            return libroRepositorio.buscarLibroPorTitulo(titulo);
+//        } else {
+//            throw new ExceptionServicio("El titulo a buscar es nulo o vacio");
+//        }
+//    }
+//
+//    public Libro buscarLibroPorISBN(Long isbn) throws ExceptionServicio {
+//        if (isbn != null || isbn > 0) {
+//            return libroRepositorio.buscarLibroPorISBN(isbn);
+//        } else {
+//            throw new ExceptionServicio("El isbn a buscar es nulo o vacio");
+//        }
+//    }
 
     public Libro buscarLibroPorID(String id) throws ExceptionServicio {
         if (id != null || !id.isEmpty()) {
@@ -187,19 +187,19 @@ public class LibroServicio {
         }
     }
 
-    public ArrayList<Libro> listarLibrosPorAnio(Integer anio) {
-        return libroRepositorio.listarLibrosPorAnio(anio);
-    }
+//    public ArrayList<Libro> listarLibrosPorAnio(Integer anio) {
+//        return libroRepositorio.listarLibrosPorAnio(anio);
+//    }
+//
+//    public ArrayList<Libro> listarLibrosPorAutor(String nombreAutor) {
+//        Autor autor = autorRepositorio.BuscarAutorPorNombre(nombreAutor);
+//        return libroRepositorio.listarLibrosPorAutor(autor.getId());
+//    }
 
-    public ArrayList<Libro> listarLibrosPorAutor(String nombreAutor) {
-        Autor autor = autorRepositorio.BuscarAutorPorNombre(nombreAutor);
-        return libroRepositorio.listarLibrosPorAutor(autor.getId());
-    }
-
-    public ArrayList<Libro> listarLibrosPorEditorial(String nombreEditorial) {
-        Editorial editorial = editorialRepositorio.BuscarEditorialPorNombre(nombreEditorial);
-        return libroRepositorio.listarLibrosPorEditorial(editorial.getId());
-    }
+//    public ArrayList<Libro> listarLibrosPorEditorial(String nombreEditorial) {
+//        Editorial editorial = editorialRepositorio.BuscarEditorialPorNombre(nombreEditorial);
+//        return libroRepositorio.listarLibrosPorEditorial(editorial.getId());
+//    }
 
     public List<Libro> listarLibros() {
 
